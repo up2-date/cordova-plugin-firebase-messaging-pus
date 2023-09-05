@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-firebase-messaging",
+  "name": "cordova-plugin-firebase-messaging-pus",
   "version": "7.1.0",
   "description": "Fork from Cordova plugin for Firebase Messaging",
   "types": "./types/index.d.ts",

@@ -1,4 +1,4 @@
-# Cordova plugin for [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
+# Cordova plugin for Firebase Cloud Messaging
 
 ## Introduction
 This is a Fork from https://github.com/chemerisuk/cordova-plugin-firebase-messaging
