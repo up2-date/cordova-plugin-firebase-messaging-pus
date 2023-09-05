@@ -1,40 +1,59 @@
 # Cordova plugin for [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
-[![NPM version][npm-version]][npm-url] [![NPM downloads][npm-downloads]][npm-url] [![NPM total downloads][npm-total-downloads]][npm-url] [![PayPal donate](https://img.shields.io/badge/paypal-donate-ff69b4?logo=paypal)][donate-url] [![Twitter][twitter-follow]][twitter-url]
 
-| [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)][donate-url] | Your help is appreciated. Create a PR, submit a bug or just grab me :beer: |
+## Introduction
+This is a Fork from https://github.com/chemerisuk/cordova-plugin-firebase-messaging
+
+Please support the original developer [@chemerisuk](https://github.com/chemerisuk) with a small donation
+
+| [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)][donate-url] | Donate to the Original Author |
 |-|-|
-
-[npm-url]: https://www.npmjs.com/package/cordova-plugin-firebase-messaging
-[npm-version]: https://img.shields.io/npm/v/cordova-plugin-firebase-messaging.svg
-[npm-downloads]: https://img.shields.io/npm/dm/cordova-plugin-firebase-messaging.svg
-[npm-total-downloads]: https://img.shields.io/npm/dt/cordova-plugin-firebase-messaging.svg?label=total+downloads
-[twitter-url]: https://twitter.com/chemerisuk
-[twitter-follow]: https://img.shields.io/twitter/follow/chemerisuk.svg?style=social&label=Follow%20me
-[donate-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6HLVTJDGQQ6EY&source=url
 
 ## Index
 
 <!-- MarkdownTOC levels="2,3" autolink="true" -->
 
-- [Supported platforms](#supported-platforms)
-- [Installation](#installation)
-- [Adding configuration files](#adding-configuration-files)
-    - [Set custom default notification icon \(Android only\)](#set-custom-default-notification-icon-android-only)
-    - [Set custom default notification color \(Android only\)](#set-custom-default-notification-color-android-only)
-- [Type Aliases](#type-aliases)
+- [Cordova plugin for Firebase Cloud Messaging](#cordova-plugin-for-firebase-cloud-messaging)
+  - [Introduction](#introduction)
+  - [Index](#index)
+  - [Supported platforms](#supported-platforms)
+  - [Installation](#installation)
+  - [Adding configuration files](#adding-configuration-files)
+    - [Set custom default notification icon (Android only)](#set-custom-default-notification-icon-android-only)
+    - [Set custom default notification color (Android only)](#set-custom-default-notification-color-android-only)
+  - [Type Aliases](#type-aliases)
     - [PushPayload](#pushpayload)
-- [Functions](#functions)
+      - [Type declaration](#type-declaration)
+  - [Functions](#functions)
     - [clearNotifications](#clearnotifications)
+      - [Returns](#returns)
     - [deleteToken](#deletetoken)
+      - [Returns](#returns-1)
     - [getBadge](#getbadge)
+      - [Returns](#returns-2)
     - [getToken](#gettoken)
+      - [Parameters](#parameters)
+      - [Returns](#returns-3)
     - [onBackgroundMessage](#onbackgroundmessage)
+      - [Parameters](#parameters-1)
+      - [Returns](#returns-4)
     - [onMessage](#onmessage)
+      - [Parameters](#parameters-2)
+      - [Returns](#returns-5)
     - [onTokenRefresh](#ontokenrefresh)
+      - [Parameters](#parameters-3)
+      - [Returns](#returns-6)
     - [requestPermission](#requestpermission)
+      - [Parameters](#parameters-4)
+      - [Returns](#returns-7)
     - [setBadge](#setbadge)
+      - [Parameters](#parameters-5)
+      - [Returns](#returns-8)
     - [subscribe](#subscribe)
+      - [Parameters](#parameters-6)
+      - [Returns](#returns-9)
     - [unsubscribe](#unsubscribe)
+      - [Parameters](#parameters-7)
+      - [Returns](#returns-10)
 
 <!-- /MarkdownTOC -->
 
@@ -45,7 +64,7 @@
 
 ## Installation
 
-    $ cordova plugin add cordova-plugin-firebase-messaging
+    $ cordova plugin  add github:up2-date/cordova-plugin-firebase-messaging-pus
 
 If you get an error about CocoaPods being unable to find compatible versions, run
     

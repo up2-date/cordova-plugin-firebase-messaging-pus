@@ -1,10 +1,10 @@
 {
   "name": "cordova-plugin-firebase-messaging",
-  "version": "7.0.4",
-  "description": "Cordova plugin for Firebase Messaging",
+  "version": "7.1.0",
+  "description": "Fork from Cordova plugin for Firebase Messaging",
   "types": "./types/index.d.ts",
   "cordova": {
-    "id": "cordova-plugin-firebase-messaging",
+    "id": "cordova-plugin-firebase-messaging-pus",
     "platforms": [
       "ios",
       "android"
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chemerisuk/cordova-plugin-firebase-messaging.git"
+    "url": "https://github.com/up2-date/cordova-plugin-firebase-messaging-pus"
   },
   "author": "Maksim Chemerisuk <chemerisuk@gmail.com> (https://github.com/chemerisuk)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chemerisuk/cordova-plugin-firebase-messaging/issues"
+    "url": "https://github.com/up2-date/cordova-plugin-firebase-messaging/issues"
   },
-  "homepage": "https://github.com/chemerisuk/cordova-plugin-firebase-messaging#readme",
+  "homepage": "https://github.com/up2-date/cordova-plugin-firebase-messaging#readme",
   "funding": "https://github.com/chemerisuk/cordova-plugin-firebase-messaging?sponsor=1",
   "keywords": [
     "cordova",
