@@ -5,8 +5,10 @@ This is a Fork from https://github.com/chemerisuk/cordova-plugin-firebase-messag
 
 Please support the original developer [@chemerisuk](https://github.com/chemerisuk) with a small donation
 
-| [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)] | Donate to the Original Author |
+| [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)][donate-url] | Donate to the Original Author |
 |-|-|
+
+[donate-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6HLVTJDGQQ6EY&source=url
 
 ## Index
 
