@@ -1,5 +1,9 @@
 package by.chemerisuk.cordova.firebase;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+import static com.google.android.gms.tasks.Tasks.await;
+import static by.chemerisuk.cordova.support.ExecutionThread.WORKER;
+
 import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -11,14 +15,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,13 +30,8 @@ import org.json.JSONObject;
 import java.util.Set;
 
 import by.chemerisuk.cordova.support.CordovaMethod;
-import by.chemerisuk.cordova.support.ExecutionThread;
 import by.chemerisuk.cordova.support.ReflectiveCordovaPlugin;
 import me.leolin.shortcutbadger.ShortcutBadger;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-import static com.google.android.gms.tasks.Tasks.await;
-import static by.chemerisuk.cordova.support.ExecutionThread.WORKER;
 
 public class FirebaseMessagingPlugin extends ReflectiveCordovaPlugin {
     private static final String TAG = "FCMPlugin";
@@ -47,17 +46,6 @@ public class FirebaseMessagingPlugin extends ReflectiveCordovaPlugin {
     private NotificationManager notificationManager;
     private FirebaseMessaging firebaseMessaging;
     private CallbackContext requestPermissionCallback;
-
-    private final ActivityResultLauncher<String> requestPermissionLauncher = cordova.getActivity()
-            .registerForActivityResult(
-                    new ActivityResultContracts.RequestPermission(), isGranted -> {
-                        if (isGranted) {
-                            // FCM SDK (and your app) can post notifications.
-                            requestPermissionCallback.success();
-                        } else {
-                            requestPermissionCallback.error("Notifications permission is not granted");
-                        }
-                    });
 
     @Override
     protected void pluginInitialize() {
@@ -146,20 +134,35 @@ public class FirebaseMessagingPlugin extends ReflectiveCordovaPlugin {
 
     @CordovaMethod
     private void requestPermission(CordovaArgs args, CallbackContext callbackContext) throws JSONException {
+        CordovaPlugin plugin = this;
         JSONObject options = args.getJSONObject(0);
         Context context = cordova.getActivity().getApplicationContext();
         forceShow = options.optBoolean("forceShow");
         if (NotificationManagerCompat.from(context).areNotificationsEnabled()) {
             callbackContext.success();
         } else {
-            if (Build.VERSION.SDK_INT >= 33) {
-                if (cordova.hasPermission(Manifest.permission.POST_NOTIFICATIONS))
-                    return;
-                requestPermissionCallback = callbackContext;
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            } else {
+            try {
+                if (Build.VERSION.SDK_INT >= 33) {
+                    if (cordova.hasPermission(Manifest.permission.POST_NOTIFICATIONS))
+                        return;
+                    requestPermissionCallback = callbackContext;
+                    String[] permissions = new String[]{"android.permission.POST_NOTIFICATIONS"};
+                    requestPermissions(plugin, 1, permissions);
+                } else {
+                    callbackContext.error("Notifications permission is not granted");
+                }
+            } catch (Exception e) {
                 callbackContext.error("Notifications permission is not granted");
             }
+        }
+    }
+
+    protected void requestPermissions(CordovaPlugin plugin, int requestCode, String[] permissions) throws Exception {
+        try {
+            java.lang.reflect.Method method = cordova.getClass().getMethod("requestPermissions", org.apache.cordova.CordovaPlugin.class, int.class, java.lang.String[].class);
+            method.invoke(cordova, plugin, requestCode, permissions);
+        } catch (NoSuchMethodException e) {
+            throw new Exception("requestPermissions() method not found in CordovaInterface implementation of Cordova v" + CordovaWebView.CORDOVA_VERSION);
         }
     }
 
