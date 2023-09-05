@@ -108,12 +108,15 @@ public class FirebaseMessagingPluginService extends FirebaseMessagingService {
     }
 
     private String getNotificationChannel(RemoteMessage.Notification notification) {
+        return defaultNotificationChannel;
+        /* DS: Nutze nur den Default-Kanal
         String channel = notification.getChannelId();
         if (channel == null) {
             return defaultNotificationChannel;
         } else {
             return channel;
         }
+        */
     }
 
     private Uri getNotificationSound(String soundName) {
