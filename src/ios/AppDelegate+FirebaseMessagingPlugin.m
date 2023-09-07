@@ -65,6 +65,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
+// With "FirebaseAppDelegateProxyEnabled": NO
+- (void)application:(UIApplication *)application
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [FIRMessaging messaging].APNSToken = deviceToken;    
+    NSString *fcmToken = [FIRMessaging messaging].FCMToken;
+    NSLog(@"Firebase Messaging APNS Token: %@", deviceToken);
+    NSLog(@"Firebase Messaging FCM Token : %@", fcmToken);
+}
+
 - (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
     FirebaseMessagingPlugin* fcmPlugin = [self getPluginInstance];
 
