@@ -7,7 +7,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <description>Cordova plugin for Firebase Cloud Messaging</description>
     <license>MIT</license>
     <keywords>cordova</keywords>
-    <repo>https://github.com/chemerisuk/cordova-plugin-firebase-messaging</repo>
+    <repo>https://github.com/up2-date/cordova-plugin-firebase-messaging-pus</repo>
     <issue>https://github.com/chemerisuk/cordova-plugin-firebase-messaging/issues</issue>
 
     <js-module src="www/FirebaseMessaging.js" name="FirebaseMessaging">
@@ -34,6 +34,9 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             <array>
                 <string>remote-notification</string>
             </array>
+        </config-file>
+        <config-file target="*-Info.plist" parent="FirebaseAppDelegateProxyEnabled" >
+           <false/>
         </config-file>
         <config-file target="*-Debug.plist" parent="aps-environment">
             <string>development</string>
